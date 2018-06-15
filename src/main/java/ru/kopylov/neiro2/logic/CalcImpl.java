@@ -1,9 +1,6 @@
-package ru.kopylov.neiro2.calc;
+package ru.kopylov.neiro2.logic;
 
 import org.apache.log4j.Logger;
-
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 /**
  * Created by se on 12.06.2018.

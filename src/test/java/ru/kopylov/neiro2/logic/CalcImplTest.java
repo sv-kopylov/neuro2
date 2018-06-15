@@ -1,4 +1,4 @@
-package ru.kopylov.neiro2.calc;
+package ru.kopylov.neiro2.logic;
 
 import org.junit.Test;
 import ru.kopylov.neiro2.utils.Cmp;

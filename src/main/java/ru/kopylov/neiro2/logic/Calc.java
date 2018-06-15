@@ -1,4 +1,4 @@
-package ru.kopylov.neiro2.calc;
+package ru.kopylov.neiro2.logic;
 
 /**
  * Created by se on 12.06.2018.

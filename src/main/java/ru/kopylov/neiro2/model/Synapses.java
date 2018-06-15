@@ -1,10 +1,8 @@
 package ru.kopylov.neiro2.model;
 
-import ru.kopylov.neiro2.calc.Calc;
+import ru.kopylov.neiro2.logic.Calc;
 
 import java.util.Random;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 /**
  * Created by se on 12.06.2018.
