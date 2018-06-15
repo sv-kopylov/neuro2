@@ -11,4 +11,11 @@ public class Cmp {
         }
         return true;
     }
+    public static boolean compareFloatArrays(float[] one, float[] two, double precission){
+        if(one.length!=two.length) return false;
+        for(int i=0;i<one.length;i++){
+            if(Math.abs(one[i]-two[i])>precission) return false;
+        }
+        return true;
+    }
 }

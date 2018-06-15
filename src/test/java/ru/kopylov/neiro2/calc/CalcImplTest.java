@@ -23,7 +23,7 @@ public class CalcImplTest {
         Print.print(expected);
         Print.print(result);
 
-        assertTrue(Cmp.compareFloatArrays(input, result));
+        assertTrue(Cmp.compareFloatArrays(expected, result, 0.01));
     }
 
 }
