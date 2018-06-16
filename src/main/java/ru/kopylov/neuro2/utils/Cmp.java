@@ -1,4 +1,4 @@
-package ru.kopylov.neiro2.utils;
+package ru.kopylov.neuro2.utils;
 
 /**
  * Created by se on 13.06.2018.

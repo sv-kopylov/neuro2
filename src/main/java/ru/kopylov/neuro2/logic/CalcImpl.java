@@ -1,10 +1,12 @@
-package ru.kopylov.neiro2.logic;
+package ru.kopylov.neuro2.logic;
 
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by se on 12.06.2018.
  */
+@Component
 public class CalcImpl implements Calc {
     private static Logger logger = Logger.getLogger(CalcImpl.class);
 

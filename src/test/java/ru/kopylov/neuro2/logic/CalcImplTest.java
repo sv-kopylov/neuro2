@@ -1,8 +1,8 @@
-package ru.kopylov.neiro2.logic;
+package ru.kopylov.neuro2.logic;
 
 import org.junit.Test;
-import ru.kopylov.neiro2.utils.Cmp;
-import ru.kopylov.neiro2.utils.Print;
+import ru.kopylov.neuro2.utils.Cmp;
+import ru.kopylov.neuro2.utils.Print;
 
 import static org.junit.Assert.*;
 

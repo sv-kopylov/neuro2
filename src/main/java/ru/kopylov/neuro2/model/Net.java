@@ -1,4 +1,4 @@
-package ru.kopylov.neiro2.model;
+package ru.kopylov.neuro2.model;
 
 /**
  * Created by se on 15.06.2018.
@@ -13,6 +13,8 @@ public class Net {
             layers[i]=new Layer(neuronNum);
         }
         layers[layers.length-1]=new Layer(neuronsInLastLayer);
+
+        synapses=new Synapses[layers.length-1];
 
         for(int i=0;i<layers.length-1;i++){
             synapses[i]=new Synapses(layers[i],layers[i+1]);

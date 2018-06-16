@@ -1,4 +1,4 @@
-package ru.kopylov.neiro2.model;
+package ru.kopylov.neuro2.model;
 
 /**
  * Created by se on 12.06.2018.

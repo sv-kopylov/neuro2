@@ -1,6 +1,6 @@
-package ru.kopylov.neiro2.model;
+package ru.kopylov.neuro2.model;
 
-import ru.kopylov.neiro2.logic.Calc;
+import ru.kopylov.neuro2.logic.Calc;
 
 import java.util.Random;
 
@@ -30,6 +30,10 @@ public class Synapses {
 
     public void calcForward(){
         calc.calcForward(left.getSignals(), weigts, right.getSignals());
+    }
+
+    public float[][] getWeigts() {
+        return weigts;
     }
 
 

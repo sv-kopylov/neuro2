@@ -1,4 +1,4 @@
-package ru.kopylov.neiro2.logic;
+package ru.kopylov.neuro2.logic;
 
 /**
  * Created by se on 12.06.2018.
