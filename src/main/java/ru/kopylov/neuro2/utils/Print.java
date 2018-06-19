@@ -1,5 +1,7 @@
 package ru.kopylov.neuro2.utils;
 
+import ru.kopylov.neuro2.model.Net;
+
 /**
  * Created by se on 13.06.2018.
  */
@@ -15,4 +17,5 @@ public class Print {
         System.out.println("]");
 
     }
+
 }

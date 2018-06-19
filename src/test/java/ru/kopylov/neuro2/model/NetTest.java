@@ -16,7 +16,6 @@ public class NetTest {
 
         Net net = new Net(LAYERS_NUM,NEURO_NUM,IN_LAST_LAYER_NEURO_NUM);
 
-
         assertTrue(net.getLayers()[0].getLenght()==NEURO_NUM);
         assertTrue(net.getLayers()[1].getLenght()==NEURO_NUM);
         assertTrue(net.getLayers()[2].getLenght()==NEURO_NUM);
@@ -28,7 +27,8 @@ public class NetTest {
         assertTrue(net.getSynapses()[1].getWeigts()[0].length==NEURO_NUM);
         assertTrue(net.getSynapses()[2].getWeigts().length==NEURO_NUM);
         assertTrue(net.getSynapses()[2].getWeigts()[0].length==IN_LAST_LAYER_NEURO_NUM);
-
     }
+
+
 
 }

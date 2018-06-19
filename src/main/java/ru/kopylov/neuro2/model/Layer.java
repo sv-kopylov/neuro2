@@ -1,9 +1,11 @@
 package ru.kopylov.neuro2.model;
 
+import java.io.Serializable;
+
 /**
  * Created by se on 12.06.2018.
  */
-public class Layer {
+public class Layer implements Serializable{
 private float [] signals;
 
     public Layer(int numberOfNeurons) {

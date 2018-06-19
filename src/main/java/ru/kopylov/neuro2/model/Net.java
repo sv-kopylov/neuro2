@@ -1,11 +1,15 @@
 package ru.kopylov.neuro2.model;
 
+import java.io.Serializable;
+
 /**
  * Created by se on 15.06.2018.
  */
-public class Net {
+public class Net implements Serializable {
    private Layer[] layers;
    private Synapses[] synapses;
+
+   public Net(){}
 
     public Net(int layersNum, int neuronNum, int neuronsInLastLayer){
         layers = new Layer[layersNum];
@@ -25,12 +29,19 @@ public class Net {
 
     }
 
-
     public Layer[] getLayers() {
         return layers;
     }
 
     public Synapses[] getSynapses() {
         return synapses;
+    }
+
+    public void setLayers(Layer[] layers) {
+        this.layers = layers;
+    }
+
+    public void setSynapses(Synapses[] synapses) {
+        this.synapses = synapses;
     }
 }
