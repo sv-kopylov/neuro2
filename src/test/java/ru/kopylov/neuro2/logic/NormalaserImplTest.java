@@ -16,7 +16,7 @@ public class NormalaserImplTest {
         float r;
         while (arg<20){
             r=norm.normalise(arg);
-            System.out.format("%.3f  %-9.3f \n",arg, norm.normalise(arg));
+            System.out.format("%.1e  %-9.1e \n",arg, norm.normalise(arg));
             arg+=0.25;
             assertTrue(r>=0&&r<=1);
         }

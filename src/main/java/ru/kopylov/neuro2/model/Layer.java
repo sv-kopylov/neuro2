@@ -19,4 +19,8 @@ private float [] signals;
     public int getLenght(){
         return signals.length;
     }
+
+    public void setSignals(float[] signals) {
+        this.signals = signals;
+    }
 }

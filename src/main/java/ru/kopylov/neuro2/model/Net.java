@@ -10,7 +10,12 @@ public class Net implements Serializable {
    private Layer[] layers;
    private Synapses[] synapses;
 
-   public Net(){}
+    public void input(float [] in) {
+        if(in.length!=layers[0].getLenght()){
+            throw new IllegalArgumentException("input array lenght inkorrect, actual: "+in.length+" required: "+layers[0].getLenght());
+        }
+        layers[0].setSignals(in);
+    }
 
     public Net(int layersNum, int neuronNum, int neuronsInLastLayer){
         layers = new Layer[layersNum];

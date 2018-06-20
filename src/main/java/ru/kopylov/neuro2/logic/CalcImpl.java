@@ -1,6 +1,7 @@
 package ru.kopylov.neuro2.logic;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -8,6 +9,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class CalcImpl implements Calc {
+
+ @Autowired
+ Normaliser norm;
     private static Logger logger = Logger.getLogger(CalcImpl.class);
 
 
@@ -16,6 +20,9 @@ public class CalcImpl implements Calc {
             for(int j=0;j<input.length;j++){
                 output[i]+=weights[j][i]*input[j];
                 logger.trace(i+1+" = "+weights[j][i]+" * "+input[j]);
+            }
+            for(int k=0; k<output.length;k++){
+                output[i]=norm.normalise(output[i]);
             }
         }
     }
