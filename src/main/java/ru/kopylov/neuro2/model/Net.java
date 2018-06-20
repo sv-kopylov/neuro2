@@ -1,6 +1,7 @@
 package ru.kopylov.neuro2.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  * Created by se on 15.06.2018.
@@ -44,4 +45,17 @@ public class Net implements Serializable {
     public void setSynapses(Synapses[] synapses) {
         this.synapses = synapses;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Net net = (Net) o;
+
+        // Probably incorrect - comparing Object[] arrays with Arrays.equals
+        return Arrays.equals(synapses, net.synapses);
+    }
+
+
 }
