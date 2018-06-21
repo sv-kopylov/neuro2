@@ -1,5 +1,9 @@
 package ru.kopylov.neuro2.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import ru.kopylov.neuro2.logic.Calc;
+import ru.kopylov.neuro2.logic.Normaliser;
+
 import java.io.Serializable;
 import java.util.Arrays;
 
@@ -15,6 +19,16 @@ public class Net implements Serializable {
             throw new IllegalArgumentException("input array lenght inkorrect, actual: "+in.length+" required: "+layers[0].getLenght());
         }
         layers[0].setSignals(in);
+    }
+
+    public float[] output(){
+        return layers[layers.length-1].getSignals();
+    }
+
+    public void calcForward(){
+        for(Synapses s: synapses){
+            s.calcForward(calc, norm);
+        }
     }
 
     public Net(int layersNum, int neuronNum, int neuronsInLastLayer){
@@ -43,14 +57,6 @@ public class Net implements Serializable {
         return synapses;
     }
 
-    public void setLayers(Layer[] layers) {
-        this.layers = layers;
-    }
-
-    public void setSynapses(Synapses[] synapses) {
-        this.synapses = synapses;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -62,5 +68,13 @@ public class Net implements Serializable {
         return Arrays.equals(synapses, net.synapses);
     }
 
+    @Autowired
+    private Normaliser norm;
 
+    @Autowired
+    private Calc calc;
+
+    public void setNorm(Normaliser norm) {
+        this.norm = norm;
+    }
 }

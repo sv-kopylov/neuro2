@@ -10,8 +10,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class CalcImpl implements Calc {
 
- @Autowired
- Normaliser norm;
     private static Logger logger = Logger.getLogger(CalcImpl.class);
 
 
@@ -21,10 +19,7 @@ public class CalcImpl implements Calc {
                 output[i]+=weights[j][i]*input[j];
                 logger.trace(i+1+" = "+weights[j][i]+" * "+input[j]);
             }
-            for(int k=0; k<output.length;k++){
-                output[i]=norm.normalise(output[i]);
-            }
-        }
+      }
     }
 
     public void calcBackward(float[] input, float[][] weights, float[] output) {
