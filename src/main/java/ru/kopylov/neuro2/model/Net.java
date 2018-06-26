@@ -25,10 +25,15 @@ public class Net implements Serializable {
         return layers[layers.length-1].getSignals();
     }
 
-    public void calcForward(){
+    public float[] calcForward(){
         for(Synapses s: synapses){
             s.calcForward(calc, norm);
         }
+        return output();
+    }
+    public float[]calcForward(float [] in){
+        input(in);
+        return calcForward();
     }
 
     public Net(int layersNum, int neuronNum, int neuronsInLastLayer){

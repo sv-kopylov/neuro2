@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 /**
  * Created by se on 13.06.2018.
  */
-public class CalcImplTest {
+public class UtilCalcImplTest {
     @Test
     public void testCalcForward(){
         float [] input = {1f, 2f};

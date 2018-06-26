@@ -27,7 +27,7 @@ public class TestIntegratedNet {
         sy[0][0]= 1.1f;        sy[0][1]= 1.2f;
         sy[1][0]= 2.1f;        sy[1][1]= 2.2f;
         net.input(in);
-        net.setNorm(null);
+//        net.setNorm(null);
         net.calcForward();
         Print.print(net);
     }
