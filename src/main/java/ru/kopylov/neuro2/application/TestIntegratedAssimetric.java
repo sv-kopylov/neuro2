@@ -7,32 +7,36 @@ import org.springframework.stereotype.Component;
 import ru.kopylov.neuro2.logic.learning.Teacher;
 import ru.kopylov.neuro2.logic.learning.TeacherImpl;
 import ru.kopylov.neuro2.model.Net;
+import ru.kopylov.neuro2.utils.Print;
 
 /**
- *   <bean id ="net" class="ru.kopylov.neuro2.model.Net">
- *   <constructor-arg value="2"></constructor-arg>
- *   <constructor-arg value="2"></constructor-arg>
- *   <constructor-arg value="2"></constructor-arg>
- *   </bean>
+ * конфигурация для работы:
+ *  <bean id ="net" class="ru.kopylov.neuro2.model.Net">
+ *  <constructor-arg value="2"></constructor-arg>
+ *  <constructor-arg value="2"></constructor-arg>
+ *  <constructor-arg value="1"></constructor-arg>
+ *  </bean>
  */
 @Component
-public class TestIntegratedNet {
-
+public class TestIntegratedAssimetric {
 
     public static void main(String[] args) {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-        TestIntegratedNet app = (TestIntegratedNet) ctx.getBean(TestIntegratedNet.class);
+        TestIntegratedAssimetric app = (TestIntegratedAssimetric) ctx.getBean(TestIntegratedAssimetric.class);
         app.launch();
 
     }
-
     private void launch() {
         float[] in = {1f, 2f};
-        float[] expected = {5.5f, 6.4f};
+        float[] expected = {5.5f};
         float[][] sy = net.getSynapses()[0].getWeigts();
-        sy[0][0]= 1.1f;        sy[0][1]= 1.2f;
-        sy[1][0]= 2.1f;        sy[1][1]= 2.2f;
+
+
+        sy[0][0]= 1.1f;      //  sy[0][1]= 1.2f;
+        sy[1][0]= 2.1f;      //  sy[1][1]= 2.2f;
         net.setNorm(null);
+        Print.print(sy);
+//        Print.print(net);
         Teacher teacher = new TeacherImpl();
         teacher.lern(net, in, expected);
     }

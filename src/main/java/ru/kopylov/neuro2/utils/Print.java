@@ -19,7 +19,6 @@ public class Print {
         System.out.println("]");
 
     }
-
     public static void print(Net net){
         Layer[] layers = net.getLayers();
         Synapses [] synapses = net.getSynapses();
@@ -32,7 +31,6 @@ public class Print {
         print(layers[layers.length-1]);
         System.out.println();
     }
-
     private static void print(Layer l) {
         float[] arr = l.getSignals();
         for (float fl : arr) {
@@ -42,12 +40,10 @@ public class Print {
     private static void print(Synapses s){
         print(s.getWeigts());
     }
-
-
     public static void print(float[][] arr2d) {
         for(int i=0;i<arr2d.length;i++){
             for(int j=0;j<arr2d[0].length;j++){
-                System.out.printf("%.1e  ", arr2d[i][j]);
+                System.out.printf("%.3e  ", arr2d[i][j]);
             }
             System.out.println();
         }
