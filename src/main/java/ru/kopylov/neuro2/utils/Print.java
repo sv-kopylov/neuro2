@@ -40,15 +40,16 @@ public class Print {
         }
     }
     private static void print(Synapses s){
-        float[][] arr2d = s.getWeigts();
-        for(int i=0;i<arr2d.length;i++){
-        for(int j=0;j<arr2d[0].length;j++){
-            System.out.printf("%.1e  ", arr2d[i][j]);
-        }
-            System.out.println();
-        }
+        print(s.getWeigts());
     }
 
 
-
+    public static void print(float[][] arr2d) {
+        for(int i=0;i<arr2d.length;i++){
+            for(int j=0;j<arr2d[0].length;j++){
+                System.out.printf("%.1e  ", arr2d[i][j]);
+            }
+            System.out.println();
+        }
+    }
 }

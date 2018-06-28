@@ -6,7 +6,8 @@ import java.io.Serializable;
  * Created by se on 12.06.2018.
  */
 public class Layer implements Serializable{
-private float [] signals;
+private float[] signals;
+private float[] normalizedSignals;
 
     public Layer(int numberOfNeurons) {
         signals = new float[numberOfNeurons];
@@ -23,4 +24,5 @@ private float [] signals;
     public void setSignals(float[] signals) {
         this.signals = signals;
     }
+
 }
