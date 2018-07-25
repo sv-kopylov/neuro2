@@ -27,6 +27,9 @@ public class TestIntegratedAssimetric {
 
     }
     private void launch() {
+        float[][] ins ={{0,0},{0,1},{1,0},{1,1}};
+        float[][] outs ={{1},{0},{0},{1}};
+
         float[] in = {1f, 2f};
         float[] expected = {5.5f};
         float[][] sy = net.getSynapses()[0].getWeigts();

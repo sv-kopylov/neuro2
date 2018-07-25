@@ -9,7 +9,7 @@ import ru.kopylov.neuro2.utils.UtilCalc;
  * Created by se on 22.06.2018.
  */
 public class TeacherImpl implements Teacher {
-    private int learningSpeed = 1;
+    private double learningSpeed = 1d;
     private static Logger logger = Logger.getLogger(TeacherImpl.class);
     @Override
     public void lern(Net net, float[] in, float[] expected) {
@@ -20,6 +20,7 @@ public class TeacherImpl implements Teacher {
         float[] actualOutput = net.calcForward(in);
         float[][]weights = net.getSynapses()[net.getSynapses().length-1].getWeigts();
         float[] errors = UtilCalc.diff(expected, actualOutput);
+        Print.print(errors);
 
 //        делители для расчета коэфициента внесения погрешности весом каждой связи для данного нейрона
         float[] sumsOfWeightsForThisNeuro = getDelimitters(weights);
@@ -29,10 +30,10 @@ public class TeacherImpl implements Teacher {
 //        корректировка весов последнего слоя
         UtilCalc.apply2D(weights, (i, j, r)->r[i][j]+=(errorPerWeight[i][j]/previousLayer[i])*learningSpeed);
 
-        
 
-        logger.debug("Corrected ");
-        Print.print(weights);
+
+//        logger.trace("Corrected ");
+//        Print.print(weights);
 
 //        dA = E/x
 
@@ -43,7 +44,7 @@ public class TeacherImpl implements Teacher {
         UtilCalc.apply2D(result, (i, j, r)->{
 
             r[i][j]=((weights[i][j]/delims[j])*errors[j]);
-            System.out.println((i+1)+""+(j+1)+"="+weights[i][j]+"/"+delims[j]+"*"+errors[j]+" = "+r[i][j]);
+//            System.out.println((i+1)+""+(j+1)+"="+weights[i][j]+"/"+delims[j]+"*"+errors[j]+" = "+r[i][j]);
         });
 
         return result;
@@ -59,11 +60,11 @@ public class TeacherImpl implements Teacher {
         return result;
     }
 
-    public int getLearningSpeed() {
+    public double getLearningSpeed() {
         return learningSpeed;
     }
 
-    public void setLearningSpeed(int learningSpeed) {
+    public void setLearningSpeed(double learningSpeed) {
         this.learningSpeed = learningSpeed;
     }
 }

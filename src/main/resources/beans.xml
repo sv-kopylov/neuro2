@@ -1,5 +1,4 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
-
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
@@ -9,11 +8,14 @@
           http://www.springframework.org/schema/context/spring-context.xsd
 ">
     <context:component-scan base-package="ru.kopylov.neuro2"/>
+
     <bean id ="net" class="ru.kopylov.neuro2.model.Net">
-        <constructor-arg value="2"></constructor-arg>
-        <constructor-arg value="2"></constructor-arg>
-        <constructor-arg value="2"></constructor-arg>
+        <constructor-arg>
+            <list>
+            <value>2</value>
+            <value>3</value>
+            <value>1</value>
+            </list>
+        </constructor-arg>
     </bean>
-
-
 </beans>

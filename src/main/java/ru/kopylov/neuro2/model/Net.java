@@ -36,22 +36,16 @@ public class Net implements Serializable {
         return calcForward();
     }
 
-    public Net(int layersNum, int neuronNum, int neuronsInLastLayer){
-        layers = new Layer[layersNum];
-        for(int i=0; i<layers.length-1;i++){
-            layers[i]=new Layer(neuronNum);
+     public Net(int...lauersConfig){
+        layers = new Layer[lauersConfig.length];
+        for(int i=0; i<layers.length;i++){
+            layers[i]=new Layer(lauersConfig[i]);
         }
-        layers[layers.length-1]=new Layer(neuronsInLastLayer);
-
-        synapses=new Synapses[layers.length-1];
-
+        synapses=new Synapses[lauersConfig.length-1];
         for(int i=0;i<layers.length-1;i++){
             synapses[i]=new Synapses(layers[i],layers[i+1]);
 
         }
-
-
-
     }
 
     public Layer[] getLayers() {

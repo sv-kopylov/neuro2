@@ -8,4 +8,5 @@ import ru.kopylov.neuro2.model.Net;
 public interface Teacher {
 
     void lern(Net net, float[] in, float[] out);
+    public void setLearningSpeed(double learningSpeed);
 }
