@@ -11,6 +11,7 @@ private float[] normalizedSignals;
 
     public Layer(int numberOfNeurons) {
         signals = new float[numberOfNeurons];
+        normalizedSignals = new float[numberOfNeurons];
     }
 
     public float[] getSignals() {
@@ -25,4 +26,7 @@ private float[] normalizedSignals;
         this.signals = signals;
     }
 
+    public float[] getNormalizedSignals() {
+        return normalizedSignals;
+    }
 }

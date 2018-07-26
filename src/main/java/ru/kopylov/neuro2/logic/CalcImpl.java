@@ -3,6 +3,7 @@ package ru.kopylov.neuro2.logic;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.kopylov.neuro2.utils.UtilCalc;
 
 /**
  * Created by se on 12.06.2018.
@@ -12,14 +13,11 @@ public class CalcImpl implements Calc {
 
     private static Logger logger = Logger.getLogger(CalcImpl.class);
 
-
     public void calcForward(float[] input, float[][] weights, float[] output) {
-        for(int i=0;i<output.length;i++){
-            for(int j=0;j<input.length;j++){
-                output[i]+=weights[j][i]*input[j];
-                logger.trace(i+1+" = "+weights[j][i]+" * "+input[j]);
-            }
-      }
+        if(weights.length!=input.length||weights[0].length!=output.length){
+            throw new IllegalArgumentException("Incorrect arrays dimension");
+        }
+        UtilCalc.apply2D(weights, (i, j, w)->output[j]+=weights[i][j]*input[i]);
     }
 
     public void calcBackward(float[] input, float[][] weights, float[] output) {
