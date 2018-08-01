@@ -1,5 +1,8 @@
 package ru.kopylov.neuro2.utils;
 
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+
 /**
  * Created by se on 26.06.2018.
  */
@@ -30,6 +33,12 @@ public class UtilCalc {
             for(int j=0; j<weights[0].length;j++){
                 consumer.accept(i, j, weights);
             }
+        }
+    }
+
+    public static void apply1D(float[] arr, BiConsumer<Integer, float[]> cns){
+        for(int i=0; i<arr.length; i++){
+            cns.accept(i, arr);
         }
     }
 }

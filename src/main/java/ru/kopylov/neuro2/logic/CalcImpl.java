@@ -13,7 +13,7 @@ public class CalcImpl implements Calc {
 
     private static Logger logger = Logger.getLogger(CalcImpl.class);
 
-    public void calcForward(float[] input, float[][] weights, float[] output) {
+    public void passForward(float[] input, float[][] weights, float[] output) {
         if(weights.length!=input.length||weights[0].length!=output.length){
             throw new IllegalArgumentException("Incorrect arrays dimension");
         }

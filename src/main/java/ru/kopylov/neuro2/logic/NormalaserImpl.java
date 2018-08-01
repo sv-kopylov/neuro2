@@ -13,4 +13,9 @@ public class NormalaserImpl implements Normaliser{
         return (float) (1/
                         (1+Math.pow(Math.E, -arg)));
     }
+
+    @Override
+    public float derivite(float arg) {
+        return (1-arg)*arg;
+    }
 }

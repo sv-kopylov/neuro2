@@ -1,7 +1,5 @@
 package ru.kopylov.neuro2.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import ru.kopylov.neuro2.logic.Calc;
 import ru.kopylov.neuro2.logic.Normaliser;
 
@@ -29,8 +27,8 @@ public class Synapses implements Serializable{
         }
     }
 
-    public void calcForward(Calc calc, Normaliser normaliser){
-        calc.calcForward(left.getSignals(), weigts, right.getSignals());
+    public void passForward(Calc calc, Normaliser normaliser){
+        calc.passForward(left.getSignals(), weigts, right.getSignals());
         if(normaliser!=null){
             float[] signals = right.getSignals();
             for(int i=0;i<signals.length;i++){

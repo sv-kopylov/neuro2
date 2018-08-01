@@ -1,5 +1,8 @@
 package ru.kopylov.neuro2.model;
 
+import ru.kopylov.neuro2.logic.Normaliser;
+import ru.kopylov.neuro2.utils.UtilCalc;
+
 import java.io.Serializable;
 
 /**
@@ -8,10 +11,18 @@ import java.io.Serializable;
 public class Layer implements Serializable{
 private float[] signals;
 private float[] normalizedSignals;
+private float[] deltas;
 
     public Layer(int numberOfNeurons) {
         signals = new float[numberOfNeurons];
         normalizedSignals = new float[numberOfNeurons];
+        deltas  = new float[numberOfNeurons];
+    }
+
+    public void normalise(Normaliser norm){
+        UtilCalc.apply1D(signals,(i, sig)->{
+            normalizedSignals[i]=norm.normalise(sig[i]);
+        });
     }
 
     public float[] getSignals() {
@@ -28,5 +39,9 @@ private float[] normalizedSignals;
 
     public float[] getNormalizedSignals() {
         return normalizedSignals;
+    }
+
+    public float[] getDeltas() {
+        return deltas;
     }
 }

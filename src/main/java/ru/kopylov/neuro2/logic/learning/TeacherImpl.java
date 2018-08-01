@@ -45,7 +45,6 @@ public class TeacherImpl implements Teacher {
         UtilCalc.apply2D(result, (i, j, r)->{
 
             r[i][j]=((weights[i][j]/delims[j])*errors[j]);
-//            System.out.println((i+1)+""+(j+1)+"="+weights[i][j]+"/"+delims[j]+"*"+errors[j]+" = "+r[i][j]);
         });
 
         return result;

@@ -5,4 +5,5 @@ package ru.kopylov.neuro2.logic;
  */
 public interface Normaliser {
     float normalise(float arg);
+    float derivite(float arg);
 }

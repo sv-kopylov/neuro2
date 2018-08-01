@@ -19,7 +19,7 @@ public class UtilCalcImplTest {
         float [] result=new float[2];
 
         Calc c = new CalcImpl();
-        c.calcForward(input, weights, result);
+        c.passForward(input, weights, result);
         Print.print(expected);
         Print.print(result);
 

@@ -27,7 +27,7 @@ public class Net implements Serializable {
 
     public float[] calcForward(){
         for(Synapses s: synapses){
-            s.calcForward(calc, norm);
+            s.passForward(calc, norm);
         }
         return output();
     }
