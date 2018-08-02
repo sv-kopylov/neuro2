@@ -30,10 +30,7 @@ public class Synapses implements Serializable{
     public void passForward(Calc calc, Normaliser normaliser){
         calc.passForward(left.getSignals(), weigts, right.getSignals());
         if(normaliser!=null){
-            float[] signals = right.getSignals();
-            for(int i=0;i<signals.length;i++){
-                signals[i]=normaliser.normalise(signals[i]);
-            }
+        right.normalise(normaliser);
         }
     }
 
