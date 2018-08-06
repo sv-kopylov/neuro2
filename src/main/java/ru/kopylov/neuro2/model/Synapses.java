@@ -2,6 +2,7 @@ package ru.kopylov.neuro2.model;
 
 import ru.kopylov.neuro2.logic.Calc;
 import ru.kopylov.neuro2.logic.Normaliser;
+import ru.kopylov.neuro2.utils.UtilCalc;
 
 import java.io.Serializable;
 import java.util.Random;
@@ -32,6 +33,22 @@ public class Synapses implements Serializable{
         if(normaliser!=null){
         right.normalise(normaliser);
         }
+    }
+
+    public void calcDeltasHidden(){
+
+
+    }
+
+    private float[] calcMultyDeltas(float[][] weights, float[] deltas){
+        if(weights[0].length!=deltas.length){
+            throw new IllegalArgumentException("incporrect input array lenght");
+        }
+        float[] result = new float[weights.length];
+        UtilCalc.apply2D(weights, (i, j, w)->{
+            result[i]+=w[i][j]*deltas[j];
+        });
+        return result;
     }
 
     public float[][] getWeigts() {

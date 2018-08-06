@@ -67,6 +67,8 @@ public class TeacherImpl implements Teacher {
     public void setLearningSpeed(double learningSpeed) {
         this.learningSpeed = learningSpeed;
     }
+
+
 }
 
 

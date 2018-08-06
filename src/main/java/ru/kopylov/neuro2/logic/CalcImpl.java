@@ -20,6 +20,15 @@ public class CalcImpl implements Calc {
         UtilCalc.apply2D(weights, (i, j, w)->output[j]+=weights[i][j]*input[i]);
     }
 
+    public void calcDeltasOut(float[] expected, float[] actual, float[] deltasOut, Normaliser normaliser){
+        if(expected.length!=deltasOut.length||normaliser==null){
+            throw new IllegalArgumentException("Incorrect input in calc deltas");
+        }
+        UtilCalc.apply1D(expected, (i, exptd)->{
+            deltasOut[i]=(exptd[i]-actual[i])*normaliser.derivite(actual[i]);
+        });
+    }
+
     public void calcBackward(float[] input, float[][] weights, float[] output) {
 
     }
