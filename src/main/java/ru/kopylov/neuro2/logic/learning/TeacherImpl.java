@@ -25,7 +25,7 @@ public class TeacherImpl implements Teacher {
 //        делители для расчета коэфициента внесения погрешности весом каждой связи для данного нейрона
         float[] sumsOfWeightsForThisNeuro = getDelimitters(weights);
 
-        float[] previousLayer = net.getLayers()[net.getLayers().length-2].getSignals();
+        float[] previousLayer = net.getLayers()[net.getLayers().length-2].getInput();
         float[][]errorPerWeight = calcErrorPerWeights(weights, errors, previousLayer, sumsOfWeightsForThisNeuro);
 
 //        корректировка весов последнего слоя

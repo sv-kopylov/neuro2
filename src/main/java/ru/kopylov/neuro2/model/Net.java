@@ -18,11 +18,11 @@ public class Net implements Serializable {
         if(in.length!=layers[0].getLenght()){
             throw new IllegalArgumentException("input array lenght inkorrect, actual: "+in.length+" required: "+layers[0].getLenght());
         }
-        layers[0].setSignals(in);
+        layers[0].setInput(in);
     }
 
     public float[] output(){
-        return layers[layers.length-1].getSignals();
+        return layers[layers.length-1].getInput();
     }
 
     public float[] calcForward(){

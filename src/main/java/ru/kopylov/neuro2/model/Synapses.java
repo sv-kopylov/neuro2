@@ -29,7 +29,7 @@ public class Synapses implements Serializable{
     }
 
     public void passForward(Calc calc, Normaliser normaliser){
-        calc.passForward(left.getSignals(), weigts, right.getSignals());
+        calc.passForward(left.getInput(), weigts, right.getInput());
         if(normaliser!=null){
         right.normalise(normaliser);
         }
@@ -72,5 +72,13 @@ public class Synapses implements Serializable{
             }
         }
         return true;
+    }
+
+    public Layer getLeft() {
+        return left;
+    }
+
+    public Layer getRight() {
+        return right;
     }
 }

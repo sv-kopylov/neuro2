@@ -29,12 +29,12 @@ public class LayerTest {
 
         Layer layer = new Layer(4);
         for(int i=0; i<4; i++){
-            layer.getSignals()[i]=input[i];
+            layer.getInput()[i]=input[i];
         }
 
         layer.normalise(normaliser);
 
-        assertTrue(Cmp.compareFloatArrays(actual, layer.getNormalizedSignals(), 0.0001));
+        assertTrue(Cmp.compareFloatArrays(actual, layer.getOutput(), 0.0001));
 
 
     }

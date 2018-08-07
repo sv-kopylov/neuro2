@@ -9,36 +9,36 @@ import java.io.Serializable;
  * Created by se on 12.06.2018.
  */
 public class Layer implements Serializable{
-private float[] signals;
-private float[] normalizedSignals;
+private float[] input;
+private float[] output;
 private float[] deltas;
 
     public Layer(int numberOfNeurons) {
-        signals = new float[numberOfNeurons];
-        normalizedSignals = new float[numberOfNeurons];
+        input = new float[numberOfNeurons];
+        output = new float[numberOfNeurons];
         deltas  = new float[numberOfNeurons];
     }
 
     public void normalise(Normaliser norm){
-        UtilCalc.apply1D(signals,(i, sig)->{
-            normalizedSignals[i]=norm.normalise(sig[i]);
+        UtilCalc.apply1D(input,(i, sig)->{
+            output[i]=norm.normalise(sig[i]);
         });
     }
 
-    public float[] getSignals() {
-        return signals;
+    public float[] getInput() {
+        return input;
     }
 
     public int getLenght(){
-        return signals.length;
+        return input.length;
     }
 
-    public void setSignals(float[] signals) {
-        this.signals = signals;
+    public void setInput(float[] input) {
+        this.input = input;
     }
 
-    public float[] getNormalizedSignals() {
-        return normalizedSignals;
+    public float[] getOutput() {
+        return output;
     }
 
     public float[] getDeltas() {

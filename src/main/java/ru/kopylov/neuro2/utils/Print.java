@@ -32,7 +32,7 @@ public class Print {
         System.out.println();
     }
     private static void print(Layer l) {
-        float[] arr = l.getSignals();
+        float[] arr = l.getInput();
         for (float fl : arr) {
             System.out.printf("%.1e \n", fl);
         }
