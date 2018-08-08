@@ -13,22 +13,11 @@ public class CalcImpl implements Calc {
 
     private static Logger logger = Logger.getLogger(CalcImpl.class);
 
-    public void passForward(float[] input, float[][] weights, float[] output) {
-        if(weights.length!=input.length||weights[0].length!=output.length){
-            throw new IllegalArgumentException("Incorrect arrays dimension");
-        }
-        UtilCalc.apply2D(weights, (i, j, w)->output[j]+=weights[i][j]*input[i]);
-    }
-
     @Override
     public void passForward(Synapses synapses, Normaliser normaliser) {
         UtilCalc.apply2D(synapses.getWeigts(), (i, j, w)->synapses.getRight().getInput()[j]+=w[i][j]*synapses.getLeft().getOutput()[i]);
-        UtilCalc.apply1D(synapses.getRight().getOutput(), (i, output)->{
-            output[i]=normaliser.normalise(synapses.getRight().getInput()[i]);
-        });
-
+        synapses.getRight().normalise(normaliser);
     }
-
     @Override
     public void calcDeltasOut(float[] expected, Synapses synapses, Normaliser normaliser){
         if(expected.length!=synapses.getRight().getOutput().length||normaliser==null){

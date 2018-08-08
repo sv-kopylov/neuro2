@@ -27,7 +27,7 @@ public class Net implements Serializable {
 
     public float[] calcForward(){
         for(Synapses s: synapses){
-            s.passForward(calc, norm);
+            calc.passForward(s, normaliser);
         }
         return output();
     }
@@ -68,12 +68,12 @@ public class Net implements Serializable {
     }
 
     @Autowired
-    private Normaliser norm;
+    private Normaliser normaliser;
 
     @Autowired
     private Calc calc;
 
-    public void setNorm(Normaliser norm) {
-        this.norm = norm;
+    public void setNormaliser(Normaliser normaliser) {
+        this.normaliser = normaliser;
     }
 }

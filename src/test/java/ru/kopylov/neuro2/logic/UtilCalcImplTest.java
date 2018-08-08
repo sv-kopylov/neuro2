@@ -1,5 +1,6 @@
 package ru.kopylov.neuro2.logic;
 
+import org.junit.Before;
 import org.junit.Test;
 import ru.kopylov.neuro2.model.Layer;
 import ru.kopylov.neuro2.model.Synapses;
@@ -12,20 +13,31 @@ import static org.junit.Assert.*;
  * Created by se on 13.06.2018.
  */
 public class UtilCalcImplTest {
+
+
+
     @Test
     public void testCalcForward(){
-        float [] input = {1f, 2f};
-        float [][] weights ={{1.1f, 1.2f}, {2.1f, 2.2f}};
+
+        Normaliser norm = new NormalaserImpl();
+        Calc calc = new CalcImpl();
+        Layer right = new Layer(2);
+        Layer left = new Layer(2);
+        left.getOutput()[0]=1;
+        left.getOutput()[1]=2;
+        Synapses synapses = new Synapses(left, right);
+        synapses.getWeigts()[0][0]=1.1f;
+        synapses.getWeigts()[0][1]=1.2f;
+        synapses.getWeigts()[1][0]=2.1f;
+        synapses.getWeigts()[1][1]=2.2f;
 
         float [] expected = {5.3f, 5.6f};
-        float [] result=new float[2];
 
-        Calc c = new CalcImpl();
-        c.passForward(input, weights, result);
+        calc.passForward(synapses, norm);
         Print.print(expected);
-        Print.print(result);
+        Print.print(synapses.getRight().getInput());
 
-        assertTrue(Cmp.compareFloatArrays(expected, result, 0.01));
+        assertTrue(Cmp.compareFloatArrays(expected, synapses.getRight().getInput(), 0.01));
     }
     @Test
     public void testCalcDeltasOut(){

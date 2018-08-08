@@ -14,7 +14,7 @@ public class NetTest {
     @Test
     public void testConsructor(){
 
-        Net net = new Net(LAYERS_NUM,NEURO_NUM,IN_LAST_LAYER_NEURO_NUM);
+        Net net = new Net(NEURO_NUM,NEURO_NUM,NEURO_NUM,IN_LAST_LAYER_NEURO_NUM);
 
         assertTrue(net.getLayers()[0].getLenght()==NEURO_NUM);
         assertTrue(net.getLayers()[1].getLenght()==NEURO_NUM);
