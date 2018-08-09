@@ -13,6 +13,41 @@ import static org.junit.Assert.*;
  */
 public class CalcImplTest {
     @Test
+    public void updateWeights() throws Exception {
+    float EPSILON =0.7f;
+    float ALPHA =0.3f;
+        Calc calc = new CalcImpl();
+
+        Layer left = new Layer(2);
+        Layer right = new Layer(1);
+
+        left.getInput()[0] = 0.45f;
+        left.getInput()[1] = 0.78f;
+
+        left.getOutput()[0] = 0.61f;
+        left.getOutput()[1] = 0.69f;
+
+        right.getInput()[0] = -0.672f;
+        right.getOutput()[0] = 0.33f;
+
+        Synapses synapses = new Synapses(left, right);
+
+        synapses.getWeigts()[0][0]=1.5f;
+        synapses.getWeigts()[1][0]=-2.3f;
+
+        right.getDeltas()[0] = 0.148f;
+
+        float[] expected = {1.563f, -2.228516f};
+
+        calc.updateWeights(synapses, EPSILON,ALPHA);
+
+        Print.print(synapses.getWeigts());
+        assertEquals(synapses.getWeigts()[0][0], expected[0], 0.001);
+        assertEquals(synapses.getWeigts()[1][0], expected[1], 0.001);
+
+    }
+
+    @Test
     public void testCalcForward(){
 
         Normaliser norm = new NormalaserImpl();

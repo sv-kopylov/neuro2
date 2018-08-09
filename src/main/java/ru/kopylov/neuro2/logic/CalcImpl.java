@@ -45,8 +45,18 @@ public class CalcImpl implements Calc {
         });
         return result;
     }
-
-    public void calcBackward(float[] input, float[][] weights, float[] output) {
+    @Override
+    public void updateWeights(Synapses synapses, float epsilon, float alpha) {
+        UtilCalc.apply2D(synapses.getWeigts(),(i, j, w)->{
+            synapses.saveAndIncrement(i, j,
+                    epsilon*gradAB(i, j, synapses)+alpha*synapses.getPreviousWeights()[i][j]
+                    );
+        } );
 
     }
+    private float gradAB(int a, int b, Synapses synapses){
+        return synapses.getLeft().getOutput()[a]*synapses.getRight().getDeltas()[b];
+    }
+
+
 }

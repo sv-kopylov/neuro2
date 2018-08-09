@@ -7,7 +7,7 @@ import ru.kopylov.neuro2.model.Synapses;
  */
 public interface Calc {
 
-    public void passForward(Synapses synapses, Normaliser normaliser);
+    void passForward(Synapses synapses, Normaliser normaliser);
 
     void calcDeltasOut(float[] expected, Synapses synapses, Normaliser normaliser);
 
@@ -15,5 +15,5 @@ public interface Calc {
 
     float[] multiplyReverse(float[][] weights, float[] deltas);
 
-    public void calcBackward(float[] input, float[][] weights, float[] output);
+    void updateWeights(Synapses synapses, float epsilon, float alpha);
 }

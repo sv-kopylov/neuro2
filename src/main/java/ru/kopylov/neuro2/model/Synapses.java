@@ -13,14 +13,16 @@ import java.util.Random;
 
 public class Synapses implements Serializable{
     public final static double CMP_PRECISSION = 0.001;
-    private Layer left, right;
-    private float[][] weigts;
+    private final Layer left, right;
+    private final float[][] weigts;
+    private final float[][] previousWeights;
 
     public Synapses(Layer left, Layer right) {
         Random r = new Random(System.currentTimeMillis());
         this.left = left;
         this.right = right;
         weigts=new float[left.getLenght()][right.getLenght()];
+        previousWeights=new float[left.getLenght()][right.getLenght()];
         for(float[] arr:weigts){
             for(int i=0;i<arr.length;i++){
                 arr[i]=r.nextFloat();
@@ -73,5 +75,14 @@ public class Synapses implements Serializable{
 
     public Layer getRight() {
         return right;
+    }
+
+    public float[][] getPreviousWeights() {
+        return previousWeights;
+    }
+
+    public void saveAndIncrement(int i, int j, float value){
+        previousWeights[i][j]=weigts[i][j];
+        weigts[i][j]+=value;
     }
 }
