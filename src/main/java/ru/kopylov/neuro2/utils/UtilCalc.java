@@ -28,6 +28,7 @@ public class UtilCalc {
         });
         return result;
     }
+
     public static void apply2D(float[][] weights, ThreeConsumer<Integer, Integer, float[][]> consumer){
         for (int i=0; i<weights.length;i++){
             for(int j=0; j<weights[0].length;j++){
