@@ -9,9 +9,9 @@ import java.io.Serializable;
  * Created by se on 12.06.2018.
  */
 public class Layer implements Serializable{
-private float[] input;
-private float[] output;
-private float[] deltas;
+private final float[] input;
+private final float[] output;
+private final float[] deltas;
 
     public Layer(int numberOfNeurons) {
         input = new float[numberOfNeurons];
@@ -33,8 +33,11 @@ private float[] deltas;
         return input.length;
     }
 
-    public void setInput(float[] input) {
-        this.input = input;
+    public void setInput(float[] values) {
+        UtilCalc.apply1D(values, (i, vals)->{
+            input[i]=vals[i];
+        });
+
     }
 
     public float[] getOutput() {

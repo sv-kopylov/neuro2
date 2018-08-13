@@ -21,7 +21,7 @@ public class CalcImpl implements Calc {
     @Override
     public void calcDeltasOut(float[] expected, Synapses synapses, Normaliser normaliser){
         if(expected.length!=synapses.getRight().getOutput().length||normaliser==null){
-            throw new IllegalArgumentException("Incorrect input in calc deltas");
+            throw new IllegalArgumentException("Incorrect setInput in calc deltas");
         }
         UtilCalc.apply1D(expected, (i, exptd)->{
             synapses.getRight().getDeltas()[i]=(exptd[i]-synapses.getRight().getOutput()[i])*normaliser.derivite(synapses.getRight().getOutput()[i]);
@@ -37,7 +37,7 @@ public class CalcImpl implements Calc {
     @Override
     public float[] multiplyReverse(float[][] weights, float[] deltas){
         if(weights[0].length!=deltas.length){
-            throw new IllegalArgumentException("incporrect input array lenght");
+            throw new IllegalArgumentException("incporrect setInput array lenght");
         }
         float[] result = new float[weights.length];
         UtilCalc.apply2D(weights, (i, j, w)->{

@@ -37,7 +37,7 @@ public class Synapses implements Serializable{
 
     private float[] calcMultyDeltas(float[][] weights, float[] deltas){
         if(weights[0].length!=deltas.length){
-            throw new IllegalArgumentException("incporrect input array lenght");
+            throw new IllegalArgumentException("incporrect setInput array lenght");
         }
         float[] result = new float[weights.length];
         UtilCalc.apply2D(weights, (i, j, w)->{

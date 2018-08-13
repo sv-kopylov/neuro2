@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
-import ru.kopylov.neuro2.logic.learning.Teacher;
-import ru.kopylov.neuro2.logic.learning.TeacherImpl;
+import ru.kopylov.neuro2.learning.Teacher;
+import ru.kopylov.neuro2.learning.TeacherImpl;
 import ru.kopylov.neuro2.model.Net;
 import ru.kopylov.neuro2.utils.Print;
 import ru.kopylov.neuro2.utils.Saver;
@@ -41,10 +41,10 @@ public class XoR {
                 teacher.lern(net, ins[j], outs[j]);
 
             }
-            trues[0] = net.calcForward(ins[1])[0];
-            trues[1] = net.calcForward(ins[2])[0];
-            falses[0] = net.calcForward(ins[0])[0];
-            falses[0] = net.calcForward(ins[3])[0];
+            trues[0] = net.passForward(ins[1])[0];
+            trues[1] = net.passForward(ins[2])[0];
+            falses[0] = net.passForward(ins[0])[0];
+            falses[0] = net.passForward(ins[3])[0];
 
             if(check(trues, falses)){
                 System.out.println("donne" +i);
@@ -56,13 +56,13 @@ public class XoR {
 
         System.out.println("Результат натренированной сети");
         for (int j = 0; j < 4; j++) {
-            net.calcForward(ins[j]);
+            net.passForward(ins[j]);
             System.out.print("вход ");
             System.out.println((int) ins[j][0] + " | " + (int) ins[j][1]);
             System.out.print("выход ");
-            System.out.println(net.output()[0]);
+            System.out.println(net.getResult()[0]);
             System.out.print("ошибка ");
-            System.out.println(outs[j][0] - net.output()[0]);
+            System.out.println(outs[j][0] - net.getResult()[0]);
             System.out.println();
 
         }

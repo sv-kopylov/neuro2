@@ -1,4 +1,4 @@
-package ru.kopylov.neuro2.logic.learning;
+package ru.kopylov.neuro2.learning;
 
 import org.junit.Test;
 

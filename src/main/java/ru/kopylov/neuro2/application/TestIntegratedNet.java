@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
-import ru.kopylov.neuro2.logic.learning.Teacher;
-import ru.kopylov.neuro2.logic.learning.TeacherImpl;
+import ru.kopylov.neuro2.learning.Teacher;
+import ru.kopylov.neuro2.learning.TeacherImpl;
 import ru.kopylov.neuro2.model.Net;
 
 /**

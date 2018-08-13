@@ -14,29 +14,8 @@ public class Net implements Serializable {
    private Layer[] layers;
    private Synapses[] synapses;
 
-    public void input(float [] in) {
-        if(in.length!=layers[0].getLenght()){
-            throw new IllegalArgumentException("input array lenght inkorrect, actual: "+in.length+" required: "+layers[0].getLenght());
-        }
-        layers[0].setInput(in);
-    }
 
-    public float[] output(){
-        return layers[layers.length-1].getInput();
-    }
-
-    public float[] calcForward(){
-        for(Synapses s: synapses){
-            calc.passForward(s, normaliser);
-        }
-        return output();
-    }
-    public float[]calcForward(float [] in){
-        input(in);
-        return calcForward();
-    }
-
-     public Net(int...lauersConfig){
+    public Net(int...lauersConfig){
         layers = new Layer[lauersConfig.length];
         for(int i=0; i<layers.length;i++){
             layers[i]=new Layer(lauersConfig[i]);
@@ -46,6 +25,29 @@ public class Net implements Serializable {
             synapses[i]=new Synapses(layers[i],layers[i+1]);
 
         }
+    }
+
+    public void setInput(float [] in) {
+        if(in.length!=layers[0].getLenght()){
+            throw new IllegalArgumentException("setInput array lenght inkorrect, actual: "+in.length+" required: "+layers[0].getLenght());
+        }
+        layers[0].setInput(in);
+    }
+
+    public float[] getResult(){
+        return layers[layers.length-1].getOutput();
+    }
+
+    public float[] passForward(){
+        for(Synapses s: synapses){
+            calc.passForward(s, normaliser);
+        }
+        return getResult();
+    }
+
+    public float[] passForward(float [] in){
+        setInput(in);
+        return passForward();
     }
 
     public Layer[] getLayers() {
@@ -67,12 +69,15 @@ public class Net implements Serializable {
         return Arrays.equals(synapses, net.synapses);
     }
 
-    @Autowired
-    private Normaliser normaliser;
 
-    @Autowired
     private Calc calc;
+    @Autowired
+    public void setCalc(Calc calc) {
+        this.calc = calc;
+    }
 
+    private Normaliser normaliser;
+    @Autowired
     public void setNormaliser(Normaliser normaliser) {
         this.normaliser = normaliser;
     }
