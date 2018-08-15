@@ -40,8 +40,8 @@ public class TestIntegratedAssimetric {
         net.setNormaliser(null);
         Print.print(sy);
 //        Print.print(net);
-        Teacher teacher = new TeacherImpl();
-        teacher.lern(net, in, expected);
+//        Teacher teacher = new TeacherImpl();
+//        teacher.lern(net, in, expected);
     }
 
     @Autowired

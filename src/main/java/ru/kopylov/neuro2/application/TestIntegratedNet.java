@@ -33,8 +33,8 @@ public class TestIntegratedNet {
         sy[0][0]= 1.1f;        sy[0][1]= 1.2f;
         sy[1][0]= 2.1f;        sy[1][1]= 2.2f;
         net.setNormaliser(null);
-        Teacher teacher = new TeacherImpl();
-        teacher.lern(net, in, expected);
+//        Teacher teacher = new TeacherImpl();
+//        teacher.lern(net, in, expected);
     }
 
     @Autowired

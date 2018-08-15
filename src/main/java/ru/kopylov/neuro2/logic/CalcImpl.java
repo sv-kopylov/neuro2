@@ -15,6 +15,7 @@ public class CalcImpl implements Calc {
 
     @Override
     public void passForward(Synapses synapses, Normaliser normaliser) {
+        UtilCalc.apply1D(synapses.getRight().getInput(), (i, inputs)->inputs[i]=0);
         UtilCalc.apply2D(synapses.getWeigts(), (i, j, w)->synapses.getRight().getInput()[j]+=w[i][j]*synapses.getLeft().getOutput()[i]);
         synapses.getRight().normalise(normaliser);
     }

@@ -35,7 +35,7 @@ private final float[] deltas;
 
     public void setInput(float[] values) {
         UtilCalc.apply1D(values, (i, vals)->{
-            input[i]=vals[i];
+            output[i]=vals[i];
         });
 
     }

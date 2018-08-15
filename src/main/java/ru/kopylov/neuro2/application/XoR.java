@@ -6,6 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 import ru.kopylov.neuro2.learning.Teacher;
 import ru.kopylov.neuro2.learning.TeacherImpl;
+import ru.kopylov.neuro2.logic.ErrorCounter;
 import ru.kopylov.neuro2.model.Net;
 import ru.kopylov.neuro2.utils.Print;
 import ru.kopylov.neuro2.utils.Saver;
@@ -18,6 +19,15 @@ import java.util.Arrays;
  */
 @Component
 public class XoR {
+    @Autowired
+    Net net;
+    @Autowired
+    Teacher teacher;
+    @Autowired
+    ErrorCounter errorCounter;
+
+    public static final int ITER = 2;
+
     public static void main(String[] args) {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
         XoR app = (XoR) ctx.getBean(XoR.class);
@@ -26,37 +36,35 @@ public class XoR {
     }
 
     private void launch() {
-        float[][] ins = {{0.01f, 0.01f}, {0.01f, 1}, {1, 0.01f}, {1, 1}};
-        float[][] outs = {{1}, {0.01f}, {0.01f}, {1}};
+        float[][] ins = {{0, 0}, {0, 1}, {1, 0}, {1, 1}};
+        float[][] outs = {{0}, {1}, {1}, {0}};
 
-//        Print.print(net);
-        Teacher teacher = new TeacherImpl();
-        teacher.setLearningSpeed(0.25);
-        float trues[] = new float[2];
-        float falses[] = new float[2];
+        float [] errors = new float[4];
 
-        for (int i = 0; i < 100; i++) {
-            System.out.println("Set #" + i);
+        double error=0;
+        int k = 0;
+
+        for (int i = 0; i < ITER; i++) {
+            System.out.println("EPOCH #" + i);
             for (int j = 0; j < 4; j++) {
-                teacher.lern(net, ins[j], outs[j]);
-
+                k=0;
+                System.out.println("SET #" + k);
+                teacher.lern(net, ins[k], outs[k]);
+                Print.print(net);
+                System.out.println("result: "+net.getResult()[0]);
+                errors[k] = outs[k][0] - net.getResult()[0];
             }
-            trues[0] = net.passForward(ins[1])[0];
-            trues[1] = net.passForward(ins[2])[0];
-            falses[0] = net.passForward(ins[0])[0];
-            falses[0] = net.passForward(ins[3])[0];
+            error=errorCounter.countError(errors);
+            System.out.println("Epoch error: "+ error);
+//            Print.print(net);
 
-            if(check(trues, falses)){
-                System.out.println("donne" +i);
-                Saver saver = new SaverImpl();
-                saver.save(net, "xor.net");
-                break;
-            }
+
         }
 
-        System.out.println("Результат натренированной сети");
+       /* System.out.println("Результат натренированной сети");
         for (int j = 0; j < 4; j++) {
             net.passForward(ins[j]);
+            Print.print(net);
             System.out.print("вход ");
             System.out.println((int) ins[j][0] + " | " + (int) ins[j][1]);
             System.out.print("выход ");
@@ -65,7 +73,7 @@ public class XoR {
             System.out.println(outs[j][0] - net.getResult()[0]);
             System.out.println();
 
-        }
+        }*/
 
 
     }
@@ -84,6 +92,4 @@ public class XoR {
     }
 
 
-    @Autowired
-    Net net;
 }

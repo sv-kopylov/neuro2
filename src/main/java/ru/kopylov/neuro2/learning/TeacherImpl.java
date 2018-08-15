@@ -16,8 +16,8 @@ import ru.kopylov.neuro2.utils.UtilCalc;
  */
 
 public class TeacherImpl implements Teacher {
-    public final float EPSIOLON; // Скорость обучения
-    public final float ALPHA; // Момент
+    private final float EPSIOLON; // Скорость обучения
+    private final float ALPHA; // Момент
 
     public TeacherImpl(float EPSIOLON, float ALPHA) {
         this.EPSIOLON = EPSIOLON;
@@ -34,14 +34,10 @@ public class TeacherImpl implements Teacher {
         double error = errorCounter.countError(actualOutput, expected);
 
         Synapses[] synapses = net.getSynapses();
-        int beforeLastLayerIndex = synapses.length-1;
-        for(int i=beforeLastLayerIndex; i>=0; i--){
-            if(i==beforeLastLayerIndex){
-                calc.calcDeltasOut(expected, synapses[i], normaliser);
-            } else {
+        int lastIndex = synapses.length-1;
+        calc.calcDeltasOut(expected, synapses[lastIndex], normaliser);
+        for(int i=lastIndex; i>=0; i--){
                 calc.calcDeltasHidden(synapses[i], normaliser);
-
-            }
             calc.updateWeights(synapses[i], EPSIOLON, ALPHA);
         }
         return error;
