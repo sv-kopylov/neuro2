@@ -26,7 +26,7 @@ public class XoR {
     @Autowired
     ErrorCounter errorCounter;
 
-    public static final int ITER = 2;
+    public static final int ITER = 10000 ;
 
     public static void main(String[] args) {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
@@ -37,21 +37,23 @@ public class XoR {
 
     private void launch() {
         float[][] ins = {{0, 0}, {0, 1}, {1, 0}, {1, 1}};
-        float[][] outs = {{0}, {1}, {1}, {0}};
+        float[][] outs = {{0.3f}, {0.8f}, {0.8f}, {0.3f}};
 
         float [] errors = new float[4];
 
         double error=0;
         int k = 0;
 
+//        teacher.lernEpoch(net, ins, outs, 5, 10);
+
         for (int i = 0; i < ITER; i++) {
             System.out.println("EPOCH #" + i);
             for (int j = 0; j < 4; j++) {
-                k=0;
-                System.out.println("SET #" + k);
+                k=j;
+//                System.out.println("SET #" + k);
                 teacher.lern(net, ins[k], outs[k]);
-                Print.print(net);
-                System.out.println("result: "+net.getResult()[0]);
+//                Print.print(net);
+//                System.out.println("result: "+net.getResult()[0]);
                 errors[k] = outs[k][0] - net.getResult()[0];
             }
             error=errorCounter.countError(errors);
@@ -61,7 +63,7 @@ public class XoR {
 
         }
 
-       /* System.out.println("Результат натренированной сети");
+       System.out.println("Результат натренированной сети");
         for (int j = 0; j < 4; j++) {
             net.passForward(ins[j]);
             Print.print(net);
@@ -73,7 +75,7 @@ public class XoR {
             System.out.println(outs[j][0] - net.getResult()[0]);
             System.out.println();
 
-        }*/
+        }
 
 
     }

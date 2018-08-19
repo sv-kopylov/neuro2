@@ -8,4 +8,6 @@ import ru.kopylov.neuro2.model.Net;
 public interface Teacher {
 
     double lern(Net net, float[] in, float[] out);
+
+    double lernEpoch(Net net, float[][] ins, float[][] outs, int times, int everySetPerTime);
 }

@@ -20,7 +20,7 @@
     </bean>
     <bean id ="teacher" class="ru.kopylov.neuro2.learning.TeacherImpl">
         <constructor-arg value="#{0.7}"/>
-        <constructor-arg value="0.03"/>
+        <constructor-arg value="0.0001"/>
     </bean>
 
 </beans>

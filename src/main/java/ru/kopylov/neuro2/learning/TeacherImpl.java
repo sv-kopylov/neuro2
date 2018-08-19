@@ -42,6 +42,21 @@ public class TeacherImpl implements Teacher {
         }
         return error;
     }
+    @Override
+    public double lernEpoch(Net net, float[][] ins, float[][] outs, int times, int everySetPerTime) {
+
+        for(int k=0; k<times;k++) {
+            for (int i = 0; i < ins.length; i++) {
+                for (int j = 0; j < everySetPerTime; j++) {
+                    lern(net, ins[i], outs[i]);
+                }
+            }
+        }
+
+
+
+        return 0;
+}
 
     private float[][] calcErrorPerWeights(float[][] weights, float[] errors, float[] previousLayer, float[] delims) {
         float[][] result = new float[weights.length][weights[0].length];
