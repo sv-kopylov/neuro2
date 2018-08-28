@@ -1,6 +1,7 @@
 package ru.kopylov.neuro2.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import ru.kopylov.neuro2.logic.Calc;
 import ru.kopylov.neuro2.logic.Normaliser;
 
@@ -72,6 +73,7 @@ public class Net implements Serializable {
 
     private Calc calc;
     @Autowired
+    @Qualifier("parallelCalcImpl")
     public void setCalc(Calc calc) {
         this.calc = calc;
     }

@@ -26,7 +26,7 @@ public class XoR {
     @Autowired
     ErrorCounter errorCounter;
 
-    public static final int ITER = 10000 ;
+    public static final int ITER = 10000;
 
     public static void main(String[] args) {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
@@ -36,31 +36,40 @@ public class XoR {
     }
 
     private void launch() {
+        long time = System.currentTimeMillis();
         float[][] ins = {{0, 0}, {0, 1}, {1, 0}, {1, 1}};
         float[][] outs = {{0.3f}, {0.8f}, {0.8f}, {0.3f}};
 
         float [] errors = new float[4];
 
-        double error=0;
+        double error=1;
+        double previousError;
         int k = 0;
-
-//        teacher.lernEpoch(net, ins, outs, 5, 10);
+        int cnt=0;
+        int treshold=100;
 
         for (int i = 0; i < ITER; i++) {
-            System.out.println("EPOCH #" + i);
+           System.out.println("EPOCH #" + i);
             for (int j = 0; j < 4; j++) {
                 k=j;
-//                System.out.println("SET #" + k);
                 teacher.lern(net, ins[k], outs[k]);
-//                Print.print(net);
-//                System.out.println("result: "+net.getResult()[0]);
                 errors[k] = outs[k][0] - net.getResult()[0];
             }
+
+            previousError=error;
             error=errorCounter.countError(errors);
+//            if(error>previousError){
+//                cnt++;
+//                System.out.println("ERROR UP");
+//                if(cnt>=treshold){
+//                    System.out.println("finish");
+//                    break;
+//                }
+//
+//            } else {
+//                cnt=0;
+//            }
             System.out.println("Epoch error: "+ error);
-//            Print.print(net);
-
-
         }
 
        System.out.println("Результат натренированной сети");
@@ -75,23 +84,13 @@ public class XoR {
             System.out.println(outs[j][0] - net.getResult()[0]);
             System.out.println();
 
+
         }
+        System.out.println("время выполнения: "+(System.currentTimeMillis()-time));
 
 
     }
 
-    boolean check(float[] big, float[] small) {
-        Arrays.sort(big);
-        Arrays.sort(small);
-        Print.print(big);
-        Print.print(small);
-        if(big[0]<=small[small.length-1])
-
-//        if (big[0] <= small[0] || big[1] <= small[0] || big[0] <= small[1] || big[1] <= small[1])
-            return false;
-        else
-            return true;
-    }
 
 
 }

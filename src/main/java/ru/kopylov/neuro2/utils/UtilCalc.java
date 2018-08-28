@@ -1,6 +1,7 @@
 package ru.kopylov.neuro2.utils;
 
 import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
 /**
@@ -42,4 +43,5 @@ public class UtilCalc {
             cns.accept(i, arr);
         }
     }
+
 }

@@ -13,7 +13,7 @@
         <constructor-arg>
             <list>
             <value>2</value>
-            <value>3</value>
+            <value>4</value>
             <value>1</value>
             </list>
         </constructor-arg>
@@ -21,6 +21,11 @@
     <bean id ="teacher" class="ru.kopylov.neuro2.learning.TeacherImpl">
         <constructor-arg value="#{0.7}"/>
         <constructor-arg value="0.0001"/>
+    </bean>
+    <bean id ="parallelCalcImpl" class="ru.kopylov.neuro2.logic.ParallelCalcImpl"
+          init-method="init"
+    destroy-method="destroy">
+
     </bean>
 
 </beans>
